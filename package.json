@@ -1,0 +1,19 @@
+{
+  "name": "24-hr-video",
+  "scripts": {
+    "test": "run-local-lambda --file transcode-video.js --event event.json",
+    "deploy": "aws lambda update-function-code --function-name  arn:aws:lambda:us-east-1:283430082488:function:transcode-video --zip-file fileb://Lambda-Deployment.zip",
+    "predeploy": "zip -r Lambda-Deployment.zip * -x *.zip *.json *.log"
+  },
+  "version": "1.0.0",
+  "description": "transcode lambda",
+  "main": "transcode-video.js",
+  "dependencies": {
+    "aws-sdk": "^2.72.0"
+  },
+  "devDependencies": {
+    "run-local-lambda": "^1.1.1"
+  },
+  "author": "chad king",
+  "license": "ISC"
+}

@@ -1,0 +1,7 @@
+# package directories
+video-transcoding-pipeline/node_modules
+video-transcoding-pipeline/set-permissions/npm-debug.log
+jspm_packages
+node_modules
+npm-debug.log
+**/*.zip
