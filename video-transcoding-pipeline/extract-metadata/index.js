@@ -1,10 +1,3 @@
-/**
- * Created by Peter Sbarski
- * Serverless Architectures on AWS
- * http://book.acloud.guru/
- * Last Updated: Feb 11, 2017
- */
-
 'use strict';
 
 var AWS = require('aws-sdk');
@@ -13,7 +6,7 @@ var fs = require('fs');
 
 process.env['PATH'] = process.env['PATH'] + ':' + process.env['LAMBDA_TASK_ROOT'];
 
-var s3 = new AWS.S3();
+const s3 = new AWS.S3();
 
 function saveMetadataToS3(body, bucket, key, callback) {
     console.log('Saving metadata to s3');
@@ -21,7 +14,8 @@ function saveMetadataToS3(body, bucket, key, callback) {
     s3.putObject({
         Bucket: bucket,
         Key: key,
-        Body: body
+        Body: body,
+        ACL: 'public-read'
     }, function (error, data) {
         if (error) {
             callback(error);
@@ -68,6 +62,5 @@ exports.handler = function (event, context, callback) {
 
     var sourceBucket = message.Records[0].s3.bucket.name;
     var sourceKey = decodeURIComponent(message.Records[0].s3.object.key.replace(/\+/g, ' '));
-
     saveFileToFilesystem(sourceBucket, sourceKey, callback);
 };

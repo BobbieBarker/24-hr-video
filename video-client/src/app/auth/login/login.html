@@ -1,0 +1,17 @@
+
+<div *ngIf="session | async as user; else loginBlock">
+  <button md-icon-button (click)="logOut$.next()"
+   mdTooltip="Log Out" [mdTooltipPosition]="'below'">
+    <md-icon class="md-36">exit_to_app</md-icon>
+  </button>
+</div>
+
+<ng-template #loginBlock>
+  <button (click)="login$.next()"
+  md-icon-button
+  color="accent"
+  mdTooltip="Login" 
+  [mdTooltipPosition]="'below'">
+    <md-icon class="md-36">fingerprint</md-icon>
+  </button>
+</ng-template>
